@@ -1,0 +1,36 @@
+{{ form_start(form) }}
+    {{ form_row(form.name) }}
+    {{ form_row(form.phone) }}
+{{ form_end(form) }}
+
+<button id="send">Register!</button>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+<script>
+    $( "#send" ).click(function() {
+        var myForm = $('form[name="contact"]').serializeArray();
+
+        var sendForm = {
+            "name": myForm[0].value,
+            "phone": myForm[1].value
+        };
+
+        $.ajax({
+            type: "POST",
+            url: "api/contact",
+            headers: {
+                "token":"azerty",
+            },
+            data: JSON.stringify(sendForm),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function(data){
+                console.log("ok");
+            },
+            failure: function(errMsg) {
+                console.log("fail");
+            }
+        });
+    });
+</script>

@@ -1,0 +1,4 @@
+contacts : 
+  type: rest
+  resource: "AppBundle:Contacts"
+  name_prefix:  api_
